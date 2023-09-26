@@ -14,10 +14,6 @@ app.use(express.urlencoded({
 app.use(cookieParser());
 app.use(express.static("app/public"));
 
-// app.configure(function(){
-//     app.use(express.bodyParser());
-// });
-
 //Set app config
 const title = process.env.TITLE;
 const port = process.env.PORT;
@@ -43,14 +39,14 @@ db.sequelize.sync().then(() => {
     app.listen(port, () => console.log(title + " run on " + baseUrl))
 });
 
-function create_roles(){
-	db.role.create({
-		id: 1,
-		name: "USER"
-	});
+// function create_roles(){
+// 	db.role.create({
+// 		id: 1,
+// 		name: "USER"
+// 	});
 	
-	db.role.create({
-		id: 2,
-		name: "ADMIN"
-	});
-}
+// 	db.role.create({
+// 		id: 2,
+// 		name: "ADMIN"
+// 	});
+// }

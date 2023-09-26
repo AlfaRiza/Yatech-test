@@ -9,17 +9,19 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.STRING
-      },
       name: {
         type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true
       },
       password: {
         type: Sequelize.STRING
+      },
+      role: {
+        type: Sequelize.DataTypes.ENUM,
+        values: ['user', 'admin']
       },
       createdAt: {
         allowNull: false,
