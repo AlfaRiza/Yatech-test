@@ -15,11 +15,11 @@ module.exports = {
           process.env.REFRESH_TOKEN_PRIVATE_KEY,
           { expiresIn: "30d" }
       );
-    
-      const userToken = await UserToken.findOne({ user_id: user.id });
-      if (userToken) await userToken.remove();
-    
-      await UserToken.create({id: user.id, user_id: user.id, token: refreshToken })
+
+      const userToken = await UserToken.findOne({ where: { user_id: user.id }});
+      if (userToken) await userToken.destroy();
+
+      await UserToken.create({user_id: user.id, token: refreshToken })
       return Promise.resolve({ accessToken, refreshToken });
     } catch (err) {
       return Promise.reject(err);
